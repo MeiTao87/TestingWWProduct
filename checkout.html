@@ -102,7 +102,7 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- Cart items will be injected here -->
+                <!-- Cart items injected here -->
             </tbody>
         </table>
         <p class="total">Total: $<span id="grandTotal">0</span></p>
@@ -117,12 +117,13 @@
     </div>
 
     <script>
+        // Load cart from localStorage
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
         const tbody = document.querySelector('#cartTable tbody');
         const grandTotalEl = document.getElementById('grandTotal');
 
         function renderCart() {
-            tbody.innerHTML = ''; // clear table
+            tbody.innerHTML = '';
             let total = 0;
             cart.forEach((item, index) => {
                 const tr = document.createElement('tr');
@@ -149,7 +150,7 @@
 
         renderCart();
 
-        // Form submission (client-side simulation)
+        // Form submission
         document.getElementById('orderForm').addEventListener('submit', function (e) {
             e.preventDefault();
             if (cart.length === 0) {
