@@ -6,10 +6,11 @@
     <title>Demo Curtains Store</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
             background: #f9f9f9;
+            color: #333;
         }
 
         .container {
@@ -18,6 +19,7 @@
             padding: 20px;
             background: #fff;
             border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
         }
 
         .product {
@@ -27,12 +29,13 @@
         }
 
         .images {
-            flex: 1 1 400px;
+            flex: 1 1 500px;
         }
 
             .images img {
                 width: 100%;
                 border-radius: 8px;
+                transition: 0.3s ease;
             }
 
         .thumbnails {
@@ -42,36 +45,39 @@
         }
 
             .thumbnails img {
-                width: 60px;
-                height: 60px;
+                width: 70px;
+                height: 70px;
                 object-fit: cover;
                 cursor: pointer;
                 border: 2px solid transparent;
-                border-radius: 4px;
+                border-radius: 5px;
+                transition: 0.2s;
             }
 
-                .thumbnails img.active {
+                .thumbnails img.active, .thumbnails img:hover {
                     border-color: #007BFF;
+                    transform: scale(1.05);
                 }
 
         .sidebar {
             flex: 1 1 300px;
-            position: sticky;
-            top: 20px;
             background: #f4f4f4;
             padding: 20px;
             border-radius: 10px;
             height: fit-content;
+            position: sticky;
+            top: 20px;
         }
 
             .sidebar h1 {
+                font-size: 1.6em;
                 margin-top: 0;
-                font-size: 1.5em;
             }
 
         label {
             display: block;
-            margin: 10px 0 5px;
+            margin: 15px 0 5px;
+            font-weight: 500;
         }
 
         select, input[type="checkbox"] {
@@ -79,27 +85,29 @@
         }
 
         .price {
-            font-size: 1.5em;
+            font-size: 1.7em;
             font-weight: bold;
-            margin: 20px 0;
+            margin: 25px 0;
+            color: #007BFF;
         }
 
         button {
             background: #007BFF;
             color: #fff;
             border: none;
-            padding: 10px 20px;
+            padding: 12px 20px;
             border-radius: 5px;
             cursor: pointer;
             font-size: 1em;
             width: 100%;
+            transition: 0.3s;
         }
 
             button:hover {
                 background: #0056b3;
             }
 
-        @media (max-width: 768px) {
+        @media(max-width:768px) {
             .product {
                 flex-direction: column;
             }
@@ -115,14 +123,17 @@
 
     <div class="container">
         <div class="product">
+            <!-- Images -->
             <div class="images">
                 <img id="mainImage" src="images/1.jpg" alt="Curtain Image">
                 <div class="thumbnails">
-                    <img src="images/1.jpg" class="active">
-                    <img src="images/2.jpg">
-                    <img src="images/3.jpg">
+                    <img src="images/1.jpg" class="active" alt="Curtain 1">
+                    <img src="images/2.jpg" alt="Curtain 2">
+                    <img src="images/3.jpg" alt="Curtain 3">
                 </div>
             </div>
+
+            <!-- Sidebar -->
             <div class="sidebar">
                 <h1>Vitrage Demo Curtain</h1>
                 <p>Elegant light blue curtains perfect for living rooms and bedrooms. High-quality fabric for durability and soft touch.</p>
@@ -156,20 +167,19 @@
     </div>
 
     <script>
-        // Price calculation
+        // Live price calculation
         function updatePrice() {
             const size = parseInt(document.getElementById('size').value);
             const color = parseInt(document.getElementById('color').value);
             const extra = document.getElementById('extraFeature').checked ? parseInt(document.getElementById('extraFeature').value) : 0;
             document.getElementById('total').textContent = size + color + extra;
         }
-
         document.getElementById('size').addEventListener('change', updatePrice);
         document.getElementById('color').addEventListener('change', updatePrice);
         document.getElementById('extraFeature').addEventListener('change', updatePrice);
         updatePrice();
 
-        // Image thumbnail switch
+        // Thumbnail image switch
         const mainImage = document.getElementById('mainImage');
         const thumbnails = document.querySelectorAll('.thumbnails img');
         thumbnails.forEach(thumb => {
