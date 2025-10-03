@@ -326,3 +326,18 @@
                 cartTotal += price;
                 document.getElementById('cartTotal').textContent = cartTotal;
                 alert(`${product.querySelector('h2').textContent} added to cart!`);
+            });
+        });
+
+        // Checkout
+        function checkout() {
+            if (cartTotal === 0) {
+                alert("Your cart is empty!");
+            } else {
+                alert(`Your total is $${cartTotal}. Please contact us to complete the order.`);
+            }
+        }
+    </script>
+
+</body>
+</html>
