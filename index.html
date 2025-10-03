@@ -1,77 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Custom Products Demo</title>
-<style>
-  body { font-family: Arial, sans-serif; margin: 20px; }
-  .product { border: 1px solid #ccc; padding: 15px; margin-bottom: 20px; border-radius: 8px; }
-  label { display: block; margin: 5px 0; }
-  select, input[type="checkbox"] { margin-left: 10px; }
-  .price { font-weight: bold; margin-top: 10px; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Curtains Store</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f9f9f9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+        }
+
+        .product {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .images {
+            flex: 1 1 400px;
+        }
+
+            .images img {
+                width: 100%;
+                border-radius: 8px;
+            }
+
+        .thumbnails {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+            .thumbnails img {
+                width: 60px;
+                height: 60px;
+                object-fit: cover;
+                cursor: pointer;
+                border: 2px solid transparent;
+                border-radius: 4px;
+            }
+
+                .thumbnails img.active {
+                    border-color: #007BFF;
+                }
+
+        .details {
+            flex: 1 1 400px;
+        }
+
+            .details h1 {
+                margin-top: 0;
+            }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        select, input[type="checkbox"] {
+            margin-left: 10px;
+        }
+
+        .price {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        button {
+            background: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+            button:hover {
+                background: #0056b3;
+            }
+
+        @media (max-width: 768px) {
+            .product {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<h1>Our Custom Products</h1>
+    <div class="container">
+        <div class="product">
+            <div class="images">
+                <img id="mainImage" src="https://via.placeholder.com/500x600?text=Curtain+1" alt="Curtain Image">
+                <div class="thumbnails">
+                    <img id="mainImage" src="images/1.jpg" alt="Curtain Image">
+                    <img src="images/2.jpg">
 
-<div class="product" id="product1">
-  <h2>Product A</h2>
-  <label>Size:
-    <select class="size">
-      <option value="10">Small ($10)</option>
-      <option value="20">Medium ($20)</option>
-      <option value="30">Large ($30)</option>
-    </select>
-  </label>
-  <label>Extra Feature:
-    <input type="checkbox" class="feature" value="5"> +$5
-  </label>
-  <p class="price">Total Price: $<span>0</span></p>
-</div>
+                </div>
+            </div>
+            <div class="details">
+                <h1>Vitrage Demo Curtain - Light Blue</h1>
+                <p>Elegant light blue curtains perfect for living rooms and bedrooms. Made with high-quality fabric for durability and a soft touch.</p>
 
-<div class="product" id="product2">
-  <h2>Product B</h2>
-  <label>Material:
-    <select class="size">
-      <option value="15">Basic ($15)</option>
-      <option value="25">Premium ($25)</option>
-    </select>
-  </label>
-  <label>Gift Wrap:
-    <input type="checkbox" class="feature" value="3"> +$3
-  </label>
-  <p class="price">Total Price: $<span>0</span></p>
-</div>
+                <label>
+                    Size:
+                    <select id="size">
+                        <option value="20">100x200 cm ($20)</option>
+                        <option value="30">150x200 cm ($30)</option>
+                        <option value="40">200x200 cm ($40)</option>
+                    </select>
+                </label>
 
-<div class="product" id="product3">
-  <h2>Product C</h2>
-  <label>Color:
-    <select class="size">
-      <option value="12">Red ($12)</option>
-      <option value="18">Blue ($18)</option>
-    </select>
-  </label>
-  <label>Extra Warranty:
-    <input type="checkbox" class="feature" value="7"> +$7
-  </label>
-  <p class="price">Total Price: $<span>0</span></p>
-</div>
+                <label>
+                    Color:
+                    <select id="color">
+                        <option value="0">Light Blue ($0)</option>
+                        <option value="5">Beige (+$5)</option>
+                        <option value="5">Gray (+$5)</option>
+                    </select>
+                </label>
 
-<script>
-function updatePrice(productDiv) {
-  const size = parseInt(productDiv.querySelector('.size').value);
-  const feature = productDiv.querySelector('.feature').checked ? parseInt(productDiv.querySelector('.feature').value) : 0;
-  productDiv.querySelector('.price span').textContent = size + feature;
-}
+                <label>
+                    <input type="checkbox" id="extraFeature" value="10"> Extra Lining (+$10)
+                </label>
 
-document.querySelectorAll('.product').forEach(productDiv => {
-  productDiv.querySelector('.size').addEventListener('change', () => updatePrice(productDiv));
-  productDiv.querySelector('.feature').addEventListener('change', () => updatePrice(productDiv));
-  updatePrice(productDiv); // initial calculation
-});
-</script>
+                <p class="price">Total Price: $<span id="total">0</span></p>
+                <button>Contact to Order</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Price calculation
+        function updatePrice() {
+            const size = parseInt(document.getElementById('size').value);
+            const color = parseInt(document.getElementById('color').value);
+            const extra = document.getElementById('extraFeature').checked ? parseInt(document.getElementById('extraFeature').value) : 0;
+            document.getElementById('total').textContent = size + color + extra;
+        }
+
+        document.getElementById('size').addEventListener('change', updatePrice);
+        document.getElementById('color').addEventListener('change', updatePrice);
+        document.getElementById('extraFeature').addEventListener('change', updatePrice);
+        updatePrice();
+
+        // Image thumbnail switch
+        const mainImage = document.getElementById('mainImage');
+        const thumbnails = document.querySelectorAll('.thumbnails img');
+        thumbnails.forEach(thumb => {
+            thumb.addEventListener('click', () => {
+                mainImage.src = thumb.src;
+                thumbnails.forEach(t => t.classList.remove('active'));
+                thumb.classList.add('active');
+            });
+        });
+    </script>
 
 </body>
 </html>
