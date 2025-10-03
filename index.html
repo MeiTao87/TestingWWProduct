@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Custom Products Demo</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 20px; }
+  .product { border: 1px solid #ccc; padding: 15px; margin-bottom: 20px; border-radius: 8px; }
+  label { display: block; margin: 5px 0; }
+  select, input[type="checkbox"] { margin-left: 10px; }
+  .price { font-weight: bold; margin-top: 10px; }
+</style>
+</head>
+<body>
+
+<h1>Our Custom Products</h1>
+
+<div class="product" id="product1">
+  <h2>Product A</h2>
+  <label>Size:
+    <select class="size">
+      <option value="10">Small ($10)</option>
+      <option value="20">Medium ($20)</option>
+      <option value="30">Large ($30)</option>
+    </select>
+  </label>
+  <label>Extra Feature:
+    <input type="checkbox" class="feature" value="5"> +$5
+  </label>
+  <p class="price">Total Price: $<span>0</span></p>
+</div>
+
+<div class="product" id="product2">
+  <h2>Product B</h2>
+  <label>Material:
+    <select class="size">
+      <option value="15">Basic ($15)</option>
+      <option value="25">Premium ($25)</option>
+    </select>
+  </label>
+  <label>Gift Wrap:
+    <input type="checkbox" class="feature" value="3"> +$3
+  </label>
+  <p class="price">Total Price: $<span>0</span></p>
+</div>
+
+<div class="product" id="product3">
+  <h2>Product C</h2>
+  <label>Color:
+    <select class="size">
+      <option value="12">Red ($12)</option>
+      <option value="18">Blue ($18)</option>
+    </select>
+  </label>
+  <label>Extra Warranty:
+    <input type="checkbox" class="feature" value="7"> +$7
+  </label>
+  <p class="price">Total Price: $<span>0</span></p>
+</div>
+
+<script>
+function updatePrice(productDiv) {
+  const size = parseInt(productDiv.querySelector('.size').value);
+  const feature = productDiv.querySelector('.feature').checked ? parseInt(productDiv.querySelector('.feature').value) : 0;
+  productDiv.querySelector('.price span').textContent = size + feature;
+}
+
+document.querySelectorAll('.product').forEach(productDiv => {
+  productDiv.querySelector('.size').addEventListener('change', () => updatePrice(productDiv));
+  productDiv.querySelector('.feature').addEventListener('change', () => updatePrice(productDiv));
+  updatePrice(productDiv); // initial calculation
+});
+</script>
+
+</body>
+</html>
